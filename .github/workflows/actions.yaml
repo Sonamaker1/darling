@@ -16,8 +16,20 @@ jobs:
 
     - name: Install dependencies
       run: |
+        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster main 
+        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main 
+        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main 
+        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main 
+        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main 
+        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main
+        wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
         sudo apt-get update && sudo apt-get install devscripts equivs debhelper
+        sudo apt-get install clang-11
+        export CMAKE_C_COMPILER=clang-11
+        export CMAKE_CXX_COMPILER=clang++-11
         sudo mk-build-deps -i -r -t "apt-get --no-install-recommends -y" debian/control
+        
+        
 
     # see https://github.com/actions/virtual-environments/issues/2606#issuecomment-772683150
     - name: Free up space
