@@ -16,12 +16,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster main 
-        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main 
-        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main 
-        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main 
-        sudo deb http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main 
-        sudo deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main
+        echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster main" | sudo tee /etc/apt/sources.lis
+        echo "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster main" | sudo tee /etc/apt/sources.lis
+        echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main" | sudo tee /etc/apt/sources.lis
+        echo "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-10 main" | sudo tee /etc/apt/sources.lis
+        echo "deb http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main" | sudo tee /etc/apt/sources.lis
+        echo "deb-src http://apt.llvm.org/buster/ llvm-toolchain-buster-11 main" | sudo tee /etc/apt/sources.lis
         wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
         sudo apt-get update && sudo apt-get install devscripts equivs debhelper
         sudo apt-get install clang-11
