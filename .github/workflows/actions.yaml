@@ -11,7 +11,8 @@ jobs:
     - name: Checkout submodules
       shell: bash
       run: |
-        git clone --recurse-submodules --init --recursive --depth=1 https://github.com/darlinghq/darling.git
+        git clone --recursive https://github.com/darlinghq/darling.git
+        cd darling
 
     - name: Install dependencies
       run: |
